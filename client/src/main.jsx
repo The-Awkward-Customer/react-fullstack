@@ -3,11 +3,11 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/home";
-import EventsPage from "./pages/eventspage";
 import UseStatePage from "./pages/usestate";
 import CondRendPage from "./pages/condrend";
 import MapPage from "./pages/maps";
 import UseEffectPage from "./pages/useeffect";
+import EventsPage from "./pages/events";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
