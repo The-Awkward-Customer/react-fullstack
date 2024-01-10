@@ -1,0 +1,7 @@
+@import "../variables.scss";
+
+$header-background-colour: $primary-color;
+
+.header {
+  background-color: $header-background-colour;
+}
