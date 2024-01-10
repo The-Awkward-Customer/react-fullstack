@@ -4,11 +4,11 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/homepage";
 import EventsPage from "./pages/eventspage";
-import UseStatePage from "./pages/useStatePage";
-import CondRendPage from "./pages/condRendPage";
-import MapPage from "./pages/mapsPage";
-import UseEffectPage from "./pages/useEffectPage";
-import PropsPage from "./pages/propsPage";
+import UseStatePage from "./pages/usestatepage";
+import CondRendPage from "./pages/condrendage";
+import MapPage from "./pages/mapspage";
+import UseEffectPage from "./pages/useeffectpage";
+import PropsPage from "./pages/propspage";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
