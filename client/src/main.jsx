@@ -8,7 +8,6 @@ import UseStatePage from "./pages/usestatepage";
 import CondRendPage from "./pages/condrendage";
 import MapPage from "./pages/mapspage";
 import UseEffectPage from "./pages/useeffectpage";
-import PropsPage from "./pages/propspage";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -20,7 +19,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/conditionalrendering" element={<CondRendPage />} />
         <Route path="/maps" element={<MapPage />} />
         <Route path="/useeffectpage" element={<UseEffectPage />} />
-        <Route path="/propspage" element={<PropsPage />} />
       </Routes>
     </Router>
   </React.StrictMode>
