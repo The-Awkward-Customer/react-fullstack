@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./pages/homepage.jsx";
+import HomePage from "./pages/homepage";
 import EventsPage from "./pages/eventspage";
 import UseStatePage from "./pages/useStatePage";
 import CondRendPage from "./pages/condRendPage";
