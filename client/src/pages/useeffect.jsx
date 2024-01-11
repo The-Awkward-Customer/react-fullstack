@@ -1,3 +1,4 @@
+import TimerDirty, { GptTimer, TimerClean } from "../useReact/setintervals";
 import TestEffect from "../useReact/useEffect";
 
 export default function UseEffectPage() {
@@ -5,6 +6,9 @@ export default function UseEffectPage() {
   return (
     <>
       <TestEffect />
+      <TimerDirty />
+      <GptTimer />
+      <TimerClean />
     </>
   );
 }
