@@ -8,6 +8,7 @@ import CondRendPage from "./pages/condrend";
 import MapPage from "./pages/maps";
 import UseEffectPage from "./pages/useeffect";
 import EventsPage from "./pages/events";
+import CookieClicker from "./pages/cookieclicker";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -18,7 +19,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/usestatepage" element={<UseStatePage />} />
         <Route path="/conditionalrendering" element={<CondRendPage />} />
         <Route path="/maps" element={<MapPage />} />
-        <Route path="/useeffectpage" element={<UseEffectPage />} />
+        <Route path="/useeffect" element={<UseEffectPage />} />
+        <Route path="/cookieclicker" element={<CookieClicker />} />
       </Routes>
     </Router>
   </React.StrictMode>
