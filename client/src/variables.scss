@@ -2,3 +2,11 @@
 $primary-color: #3498db;
 $secondary-color: #2ecc71;
 $error-color: #e74c3c;
+$font-family: monospace;
+
+* {
+  font-family: $font-family;
+  margin: 0px;
+  box-sizing: border-box;
+  padding: 0px;
+}
