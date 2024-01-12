@@ -93,8 +93,12 @@ export default function CookieClicker() {
   }
 
   return (
-    <>
-      <h1>Bee Boogaloo</h1>
+    <section className="cookieClickerSection">
+      <h1>Bumble Boogaloo</h1>
+      <marquee>
+        <img src="./src/assets/Bee.svg" />
+      </marquee>
+
       <p>
         Honey: {bees}
         {unit}
@@ -105,6 +109,6 @@ export default function CookieClicker() {
       <button disabled={disableUpgradeOne} onClick={IncreasebeesPerSecond}>
         Buy a hive
       </button>
-    </>
+    </section>
   );
 }
