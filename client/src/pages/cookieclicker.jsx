@@ -25,11 +25,11 @@ export default function CookieClicker() {
       setCookies((currentCookies) => currentCookies + 1);
     }, 1000 / cookiesPerSecond);
 
-    // cleand up the intervals
+    // cleans up the intervals
     return () => {
       clearInterval(cookieInterval);
     };
-  }, [cookiesPerSecond]);
+  }, [cookies, cookiesPerSecond]);
 
   // regarding local storage
   // split into individual useEffects to mitigate side effects and refactorability.
