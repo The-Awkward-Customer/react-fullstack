@@ -1,36 +1,32 @@
 import { useState, useEffect } from "react";
 
 export default function CookieClicker() {
-  const [cookies, setCookies] = useState(0);
-  const [cookiesPerSecond, setCookiesPerSecond] = useState(1);
-  const gameState = {
-    // values…
-    cookies: cookiesPerSecond,
-    // cookiesValue: cookiesValue,
-  };
+  // sets state variables IF available.
+  // Uses tenery oporator to either the value found in local storage OR sets the value to 0 if not found
+  // The same pattern is applied to cookiesPerSecond
+  const [cookies, setCookies] = useState(
+    parseInt(localStorage.getItem("cookies")) || 0
+  );
+  const [cookiesPerSecond, setCookiesPerSecond] = useState(
+    parseInt(localStorage.getItem("cookiesPerSecond")) || 1
+  );
 
   useEffect(() => {
-    // gets game state
-    const savedGameState = localStorage.getItem("gameState");
-    if (savedGameState) {
-      const gameState = JSON.parse(savedGameState);
-      //   remap values
-      //   cookiesValue = gameState.cookiesValue;
-    }
-
     // set interval function
     const cookieInterval = setInterval(() => {
       setCookies((currentCookies) => currentCookies + 1);
     }, 1000 / cookiesPerSecond);
 
-    // saves game state
-    localStorage.setItem("gameState", JSON.stringify(gameState));
+    // sets variables in local storage and converts them to a string.
+    //  updates when the value of [dependancies] is altered
+    localStorage.setItem("cookies", cookies.toString());
+    localStorage.setItem("cookiesPerSecond", cookiesPerSecond.toString());
 
-    // cleand up the intervals
+    // cleans up the intervals
     return () => {
       clearInterval(cookieInterval);
     };
-  }, [cookiesPerSecond]);
+  }, [cookies, cookiesPerSecond]);
 
   function IncreaseCookiesPerSecond() {
     setCookiesPerSecond(cookiesPerSecond + 1);
@@ -38,12 +34,10 @@ export default function CookieClicker() {
 
   return (
     <>
-      <h1>Cookeie Clicker</h1>
+      <h1>Cookie Clicker</h1>
       <p>Cookies: {cookies}</p>
       <p>Cookies per second: {cookiesPerSecond}</p>
       <button onClick={IncreaseCookiesPerSecond}>Buy Cookie</button>
     </>
   );
 }
-
-// you can use a ternary opporator to see if something is hidden or not
