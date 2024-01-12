@@ -2,77 +2,108 @@ import { useState, useEffect } from "react";
 
 export default function CookieClicker() {
   // regarding variables logged to local storage
-  const [cookies, setCookies] = useState(
-    localStorage.getItem("cookies")
-      ? parseInt(localStorage.getItem("cookies"), 10) // 10 is the base Radix
+
+  const [bees, setbees] = useState(
+    localStorage.getItem("bees")
+      ? parseInt(localStorage.getItem("bees"), 10) // 10 is the base Radix
       : 0
   );
 
-  const [cookiesPerSecond, setCookiesPerSecond] = useState(
-    localStorage.getItem("cookiesPerSecond")
-      ? parseInt(localStorage.getItem("cookiesPerSecond"), 10) // 10 is the base Radix
+  const [beesPerClick, setbeesPerClick] = useState(
+    localStorage.getItem("beesPerClick")
+      ? parseInt(localStorage.getItem("beesPerClick"), 10) // 10 is the base Radix
+      : 1
+  );
+
+  const [beesPerSecond, setbeesPerSecond] = useState(
+    localStorage.getItem("beesPerSecond")
+      ? parseInt(localStorage.getItem("beesPerSecond"), 10) // 10 is the base Radix
       : 1
   );
 
   // regarding variables NOT logeed to local storage
-  const upgradeOne = 10 * cookiesPerSecond;
+  const upgradeOne = 10 * beesPerSecond;
 
   const [disableUpgradeOne, SetDisableUpgradeOne] = useState(true);
+
+  const [unit, setUnit] = useState("ml");
 
   useEffect(() => {
     // set interval function
     const cookieInterval = setInterval(() => {
-      setCookies((currentCookies) => currentCookies + 1);
-    }, 1000 / cookiesPerSecond);
+      setbees((currentbees) => currentbees + 1);
+    }, 1000 / beesPerSecond);
 
     // cleans up the intervals
     return () => {
       clearInterval(cookieInterval);
     };
-  }, [cookies, cookiesPerSecond]);
+  }, [bees, beesPerSecond]);
 
   // regarding local storage
   // split into individual useEffects to mitigate side effects and refactorability.
   useEffect(() => {
-    localStorage.setItem("cookies", JSON.stringify(cookies));
-  }, [cookies]);
+    localStorage.setItem("bees", JSON.stringify(bees));
+  }, [bees]);
 
   useEffect(() => {
-    localStorage.setItem("cookiesPerSecond", JSON.stringify(cookiesPerSecond));
-  }, [cookiesPerSecond]);
+    localStorage.setItem("beesPerSecond", JSON.stringify(beesPerSecond));
+  }, [beesPerSecond]);
 
-  // increments the value of cookies per second
-  function IncreaseCookiesPerSecond() {
-    setCookiesPerSecond(cookiesPerSecond + 1);
+  useEffect(() => {
+    localStorage.setItem("beesPerClick", JSON.stringify(beesPerClick));
+  }, [beesPerClick]);
+
+  // Game Functions
+
+  // increments the value of bees per second
+  function IncreasebeesPerSecond() {
+    setbeesPerSecond(beesPerSecond + 1);
+    setbees(bees - upgradeOne);
   }
 
-  // resets the game values
+  // Resets the game values
   function ResetGame() {
-    setCookiesPerSecond(1);
-    setCookies(0);
+    setbeesPerSecond(1);
+    setbees(0);
   }
-
+  // Watches for available upgrades
   useEffect(() => {
-    if (cookies >= upgradeOne) {
+    if (bees >= upgradeOne) {
       SetDisableUpgradeOne(false);
     } else {
       SetDisableUpgradeOne(true);
     }
-  }, [cookies]);
+  }, [bees]);
 
+  useEffect(() => {
+    if (bees >= 1000) {
+      setUnit("ltr");
+    }
+  });
+
+  // buys a cookie
+  function PurchaseCookie() {
+    setbees(bees + beesPerClick);
+  }
+
+  // buys an Upgrade
   function PurchaseUpgradeOne() {
-    setCookies(cookies - upgradeOne);
+    setbees(bees - upgradeOne);
   }
 
   return (
     <>
-      <h1>Cookie Clicker</h1>
-      <p>Cookies: {cookies}</p>
-      <p>Cookies per second: {cookiesPerSecond}</p>
-      <button onClick={IncreaseCookiesPerSecond}>Buy Cookie</button>
+      <h1>Bee Boogaloo</h1>
+      <p>
+        Honey: {bees}
+        {unit}
+      </p>
+      <p>bees per second: {beesPerSecond}</p>
+      <button onClick={PurchaseCookie}>Buy 1 Bee</button>
       <button onClick={ResetGame}>reset game</button>
-      <button disabled={disableUpgradeOne} onClick={PurchaseUpgradeOne}>
-        buy mutliplier
+      <button disabled={disableUpgradeOne} onClick={IncreasebeesPerSecond}>
+        Buy a hive
       </button>
     </>
   );
