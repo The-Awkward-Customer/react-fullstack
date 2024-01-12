@@ -17,6 +17,8 @@ export default function CookieClicker() {
   // regarding variables NOT logeed to local storage
   const upgradeOne = 10 * cookiesPerSecond;
 
+  const [disableUpgradeOne, SetDisableUpgradeOne] = useState(true);
+
   useEffect(() => {
     // set interval function
     const cookieInterval = setInterval(() => {
@@ -51,10 +53,16 @@ export default function CookieClicker() {
   }
 
   useEffect(() => {
-    if (cookies === upgradeOne) {
-      console.log("you can buy an upgrade");
+    if (cookies >= upgradeOne) {
+      SetDisableUpgradeOne(false);
+    } else {
+      SetDisableUpgradeOne(true);
     }
-  });
+  }, [cookies]);
+
+  function PurchaseUpgradeOne() {
+    setCookies(cookies - upgradeOne);
+  }
 
   return (
     <>
@@ -63,7 +71,9 @@ export default function CookieClicker() {
       <p>Cookies per second: {cookiesPerSecond}</p>
       <button onClick={IncreaseCookiesPerSecond}>Buy Cookie</button>
       <button onClick={ResetGame}>reset game</button>
-      <button disabled>buy mutliplier</button>
+      <button disabled={disableUpgradeOne} onClick={PurchaseUpgradeOne}>
+        buy mutliplier
+      </button>
     </>
   );
 }
