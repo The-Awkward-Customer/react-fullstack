@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import beeimg from "../assets/Bee.svg";
 
 export default function CookieClicker() {
   // regarding variables logged to local storage
@@ -112,7 +113,7 @@ export default function CookieClicker() {
         {/* body */}
         <section className="body">
           <marquee>
-            <img src="./src/assets/Bee.svg" />
+            <img src={beeimg} />
           </marquee>
         </section>
 
