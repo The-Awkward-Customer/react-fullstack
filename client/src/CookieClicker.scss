@@ -70,5 +70,12 @@ $cc-btn-fg-hover: $cc-brand-black;
       background-color: $cc-btn-bg-hover;
       color: $cc-btn-fg-hover;
     }
+
+    &:disabled {
+      background-color: #e4cfb0;
+      color: $cc-brand-beige-dark;
+      text-decoration: line-through;
+      cursor: none;
+    }
   }
 }
