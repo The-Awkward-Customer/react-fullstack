@@ -1,0 +1,81 @@
+// base-variables
+$cc-brand-beige-dark: #ae8f6a;
+$cc-brand-black: #262a2a;
+$cc-brand-pink: #ff80a4;
+$cc-brand-beige-light: #e4cfb0;
+$cc-brand-yellow: #febe00;
+$cc-brand-blue-light: #6cc7c0;
+$cc-brand-blue-dark: #36a198;
+
+// semantic-variables
+$cc-background-page: $cc-brand-yellow;
+
+//component-specific-variables
+
+// btn
+$cc-btn-bdr-radius: 999px;
+$cc-btn-pd: 8px 12px;
+$cc-btn-bg: $cc-brand-black;
+$cc-btn-bdr: 2px $cc-brand-black solid;
+$cc-btn-fg: $cc-brand-beige-light;
+// btn-hover
+$cc-btn-bg-hover: $cc-brand-beige-dark;
+$cc-btn-fg-hover: $cc-brand-black;
+
+.wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+  padding: 0px 24px 0px 24px;
+  background-color: $cc-background-page;
+}
+
+.header {
+  background-color: $cc-brand-yellow;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  h1 {
+    display: none;
+  }
+  img {
+    width: 60%;
+  }
+}
+
+.body {
+  height: 100%;
+}
+
+.footer {
+  height: 200px;
+
+  .buttonGroup {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+
+  button {
+    background-color: $cc-btn-bg;
+    color: $cc-btn-fg;
+    border: none;
+    padding: $cc-btn-pd;
+    border-radius: $cc-btn-bdr-radius;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $cc-btn-bg-hover;
+      color: $cc-btn-fg-hover;
+    }
+
+    &:disabled {
+      background-color: #e4cfb0;
+      color: $cc-brand-beige-dark;
+      text-decoration: line-through;
+      cursor: none;
+    }
+  }
+}
