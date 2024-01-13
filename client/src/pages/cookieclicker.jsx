@@ -93,22 +93,28 @@ export default function CookieClicker() {
   }
 
   return (
-    <section className="cookieClickerSection">
-      <h1>Bumble Boogaloo</h1>
-      <marquee>
-        <img src="./src/assets/Bee.svg" />
-      </marquee>
+    <>
+      <section className="header">
+        <h1>Bumble Boogaloo</h1>
+      </section>
+      <section className="cookieClickerSection">
+        <img src="./src/assets/GameTitle.svg" className="headerGraphic" />
+        <marquee>
+          <img src="./src/assets/Bee.svg" />
+        </marquee>
 
-      <p>
-        Honey: {bees}
-        {unit}
-      </p>
-      <p>bees per second: {beesPerSecond}</p>
-      <button onClick={PurchaseCookie}>Buy 1 Bee</button>
-      <button onClick={ResetGame}>reset game</button>
-      <button disabled={disableUpgradeOne} onClick={IncreasebeesPerSecond}>
-        Buy a hive
-      </button>
-    </section>
+        <p>
+          Honey: {bees}
+          {unit}
+        </p>
+        <p>bees per second: {beesPerSecond}</p>
+        <button onClick={PurchaseCookie}>Buy 1 Bee</button>
+        <button onClick={ResetGame}>reset game</button>
+        <button disabled={disableUpgradeOne} onClick={IncreasebeesPerSecond}>
+          Buy a hive
+        </button>
+      </section>
+      <section className="footer"></section>
+    </>
   );
 }

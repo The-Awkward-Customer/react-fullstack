@@ -1,13 +1,22 @@
-$cc-background-page: #ffc400;
-$cc-brand-beige: #ae8f6a;
+$cc-brand-beige-dark: #ae8f6a;
 $cc-brand-black: #262a2a;
 $cc-brand-pink: #ff80a4;
-$cc-brand-beige: #e4cfb0;
-$cc-brand-yellow: #f5d03a;
+$cc-brand-beige-light: #e4cfb0;
+$cc-brand-yellow: #febe00;
 $cc-brand-blue-light: #6cc7c0;
 $cc-brand-blue-dark: #36a198;
+
+$cc-background-page: $cc-brand-yellow;
+
+.hiveGraphic {
+  width: 50px;
+  height: 50px;
+}
 
 .cookieClickerSection {
   background-color: $cc-background-page;
   height: 100vh;
+}
+
+@media screen {
 }
