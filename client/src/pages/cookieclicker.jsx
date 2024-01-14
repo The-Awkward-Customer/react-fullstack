@@ -131,15 +131,11 @@ export default function CookieClicker() {
       console.log(`newBees = ${newBees}`);
       newBees.push({
         id: Math.random(),
-        marqueeStyle: {
+        BumblebeeStyle: {
           top: `${Math.random() * 100}%`,
-          right: `${Math.random() * 100}%`,
+          right: `0%`,
           bottom: `${Math.random() * 100}%`,
-          left: `${Math.random() * 100}%`,
-        },
-        imgStyle: {
-          height: `20px`,
-          background: `white`,
+          animationDuration: `${Math.random() * 5 + 2}s`,
         },
       });
     }
@@ -175,15 +171,15 @@ export default function CookieClicker() {
         {/* body */}
         <section className="body">
           {/* Add new elements when Clickhandler triggers the AddBumbleBee func */}
-          <div>
-            {bumbleBee.map((el) => (
-              <div
-                key={el.id}
-                style={el.marqueeStyle}
-                className="beeFlying"
-              ></div>
-            ))}
-          </div>
+
+          {bumbleBee.map((el) => (
+            <div
+              key={el.id}
+              style={el.BumblebeeStyle}
+              className="beeFlying"
+            ></div>
+          ))}
+
           <marquee>
             <img src={beeimg} />
           </marquee>

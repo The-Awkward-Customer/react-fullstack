@@ -49,10 +49,10 @@ $cc-btn-fg-hover: $cc-brand-black;
 
 @keyframes scrollRightToLeft {
   0% {
-    transform: translateX(100%);
+    transform: translateX(0vw);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-100vw);
   }
 }
 
@@ -64,7 +64,7 @@ $cc-btn-fg-hover: $cc-brand-black;
   background-image: url(./assets/Bee.svg);
   background-repeat: no-repeat;
   background-size: cover;
-  animation: scrollRightToLeft 10s linear infinite;
+  animation: scrollRightToLeft linear infinite;
   z-index: 0;
 }
 
