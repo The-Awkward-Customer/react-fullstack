@@ -21,6 +21,18 @@ export default function CookieClicker() {
       : 1
   );
 
+  const [bumbleBee, setBumbleBee] = useState(
+    localStorage.getItem("bumbleBee")
+      ? JSON.parse(localStorage.getItem("bumbleBee"))
+      : []
+  );
+
+  const [beesAdded, setBeesAdded] = useState(
+    localStorage.getItem("beesAdded")
+      ? parseInt(localStorage.getItem("beesAdded"), 10)
+      : 0
+  );
+
   // regarding variables NOT logeed to local storage
   const upgradeOne = 10 * beesPerSecond;
 
@@ -54,6 +66,14 @@ export default function CookieClicker() {
     localStorage.setItem("beesPerClick", JSON.stringify(beesPerClick));
   }, [beesPerClick]);
 
+  useEffect(() => {
+    localStorage.setItem("bumbleBee", JSON.stringify(bumbleBee));
+  }, [bumbleBee]);
+
+  useEffect(() => {
+    localStorage.setItem("beesAdded", JSON.stringify(beesAdded));
+  }, [beesAdded]);
+
   // Game Functions
 
   // increments the value of bees per second
@@ -66,6 +86,8 @@ export default function CookieClicker() {
   function ResetGame() {
     setbeesPerSecond(1);
     setbees(0);
+    setBeesAdded(0);
+    setBumbleBee([]);
   }
   // Watches for available upgrades
   useEffect(() => {
@@ -83,13 +105,52 @@ export default function CookieClicker() {
   });
 
   // buys a cookie
-  function PurchaseCookie() {
+  function purchaseBee() {
     setbees(bees + beesPerClick);
   }
 
   // buys an Upgrade
   function PurchaseUpgradeOne() {
     setbees(bees - upgradeOne);
+  }
+
+  const AddBumbleBee = () => {
+    // useState requires an array as an arrary of elements will be created
+
+    setBeesAdded(beesAdded + 1);
+    console.log("beeAdded!");
+
+    // for i beesAdded
+    // increment through beesAdded
+    // append setBumbleBee Array with a new element
+    const newBees = [];
+
+    for (let i = 0; i < beesAdded; i++) {
+      console.log(`the number of bees added is ${beesAdded}`);
+      console.log(`newBees = ${newBees}`);
+      newBees.push({
+        id: Math.random(),
+        marqueeStyle: {
+          top: `${Math.random() * 100}%`,
+          right: `${Math.random() * 100}%`,
+          bottom: `${Math.random() * 100}%`,
+          left: `${Math.random() * 100}%`,
+        },
+        imgStyle: {
+          height: `20px`,
+          background: `white`,
+        },
+      });
+    }
+
+    //  update the setBumbleBee([]) array to include newBumbleBee
+    setBumbleBee([...bumbleBee, ...newBees]);
+    console.log(`newBees = ${JSON.stringify(newBees)}`);
+  };
+
+  function ClickHandler() {
+    purchaseBee();
+    AddBumbleBee();
   }
 
   return (
@@ -106,11 +167,22 @@ export default function CookieClicker() {
             Honey: {bees}
             {unit}
           </p>
-          <p>bees per second: {beesPerSecond}</p>
+          <p>beesPeSecond: {beesPerSecond}</p>
+          <p>beesAdded: {beesAdded}</p>
         </section>
 
         {/* body */}
         <section className="body">
+          {/* Add new elements when Clickhandler triggers the AddBumbleBee func */}
+          <div>
+            {bumbleBee.map((el) => (
+              <div
+                key={el.id}
+                style={el.marqueeStyle}
+                className="beeFlying"
+              ></div>
+            ))}
+          </div>
           <marquee>
             <img src="./src/assets/Bee.svg" />
           </marquee>
@@ -119,7 +191,7 @@ export default function CookieClicker() {
         {/* footer */}
         <section className="footer">
           <section className="buttonGroup">
-            <button onClick={PurchaseCookie}>Buy 1 Bee</button>
+            <button onClick={ClickHandler}>Buy 1 Bee</button>
             <button onClick={ResetGame}>reset game</button>
             <button
               disabled={disableUpgradeOne}
