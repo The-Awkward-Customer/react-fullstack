@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import beeimg from "../assets/Bee.svg";
+import logoimg from "../assets/GameTitle.svg";
 
 export default function CookieClicker() {
   // regarding variables logged to local storage
 
-  const [bees, setbees] = useState(
+  const [honey, setHoney] = useState(
     localStorage.getItem("bees")
       ? parseInt(localStorage.getItem("bees"), 10) // 10 is the base Radix
       : 0
@@ -44,20 +44,20 @@ export default function CookieClicker() {
   useEffect(() => {
     // set interval function
     const cookieInterval = setInterval(() => {
-      setbees((currentbees) => currentbees + 1);
+      setHoney((currentbees) => currentbees + 1);
     }, 1000 / beesPerSecond);
 
     // cleans up the intervals
     return () => {
       clearInterval(cookieInterval);
     };
-  }, [bees, beesPerSecond]);
+  }, [honey, beesPerSecond]);
 
   // regarding local storage
   // split into individual useEffects to mitigate side effects and refactorability.
   useEffect(() => {
-    localStorage.setItem("bees", JSON.stringify(bees));
-  }, [bees]);
+    localStorage.setItem("honey", JSON.stringify(honey));
+  }, [honey]);
 
   useEffect(() => {
     localStorage.setItem("beesPerSecond", JSON.stringify(beesPerSecond));
@@ -86,67 +86,77 @@ export default function CookieClicker() {
   // Resets the game values
   function ResetGame() {
     setbeesPerSecond(1);
-    setbees(0);
+    setHoney(0);
     setBeesAdded(0);
     setBumbleBee([]);
   }
   // Watches for available upgrades
   useEffect(() => {
-    if (bees >= upgradeOne) {
+    if (honey >= upgradeOne) {
       SetDisableUpgradeOne(false);
     } else {
       SetDisableUpgradeOne(true);
     }
-  }, [bees]);
+  }, [honey]);
 
   useEffect(() => {
-    if (bees >= 1000) {
+    if (honey >= 1000) {
       setUnit("ltr");
     }
   });
 
   // buys a cookie
   function purchaseBee() {
-    setbees(bees + beesPerClick);
+    setHoney(honey + beesPerClick);
   }
 
   // buys an Upgrade
   function PurchaseUpgradeOne() {
-    setbees(bees - upgradeOne);
+    setbees(honey - upgradeOne);
   }
 
+  // const AddBumbleBee = () => {
+  //   // useState requires an array as an arrary of elements will be created
+
+  //   setBeesAdded(beesAdded + 1);
+  //   console.log("beeAdded!");
+
+  //   // for i beesAdded
+  //   // increment through beesAdded
+  //   // append setBumbleBee Array with a new element
+  //   const newBees = {
+  //     id: Math.random(),
+  //     BumblebeeStyle: {
+  //       top: `${Math.random() * 100}%`,
+  //       right: `0%`,
+  //       bottom: `${Math.random() * 100}%`,
+  //       animationDuration: `${Math.random() * 8 + 5}s`,
+  //     },
+  //   };
+
+  //   //  update the setBumbleBee([]) array to include newBumbleBee
+  //   setBumbleBee([...bumbleBee, ...newBees]);
+  // };
+
   const AddBumbleBee = () => {
-    // useState requires an array as an arrary of elements will be created
-
     setBeesAdded(beesAdded + 1);
-    console.log("beeAdded!");
 
-    // for i beesAdded
-    // increment through beesAdded
-    // append setBumbleBee Array with a new element
-    const newBees = [];
+    const newBee = {
+      id: Math.random(),
+      BumblebeeStyle: {
+        top: `${Math.random() * 100}%`,
+        right: `0%`,
+        bottom: `${Math.random() * 100}%`,
+        animationDuration: `${Math.random() * 8 + 5}s`,
+      },
+    };
+    console.log(` honey = ${honey}`);
+    console.log(`bumblebee = ${bumbleBee}`);
+    console.log(`newBee = ${newBee}`);
+    console.log(`beesAdded = ${beesAdded}`);
+    console.log(`BeesPerClick = ${beesPerClick}`);
 
-    for (let i = 0; i < beesAdded; i++) {
-      console.log(`the number of bees added is ${beesAdded}`);
-      console.log(`newBees = ${newBees}`);
-      newBees.push({
-        id: Math.random(),
-        marqueeStyle: {
-          top: `${Math.random() * 100}%`,
-          right: `${Math.random() * 100}%`,
-          bottom: `${Math.random() * 100}%`,
-          left: `${Math.random() * 100}%`,
-        },
-        imgStyle: {
-          height: `20px`,
-          background: `white`,
-        },
-      });
-    }
-
-    //  update the setBumbleBee([]) array to include newBumbleBee
-    setBumbleBee([...bumbleBee, ...newBees]);
-    console.log(`newBees = ${JSON.stringify(newBees)}`);
+    setBumbleBee([...bumbleBee, newBee]);
   };
 
   function ClickHandler() {
@@ -160,12 +170,9 @@ export default function CookieClicker() {
         {/* header */}
         <section className="header">
           <h1>Bumble Boogaloo</h1>
-          <img
-            src="./src/assets/GameTitle.svg"
-            className="Bumble Boogalo ltd"
-          />
+          <img src={logoimg} className="Bumble Boogalo ltd" />
           <p>
-            Honey: {bees}
+            Honey: {honey}
             {unit}
           </p>
           <p>beesPeSecond: {beesPerSecond}</p>
@@ -175,18 +182,14 @@ export default function CookieClicker() {
         {/* body */}
         <section className="body">
           {/* Add new elements when Clickhandler triggers the AddBumbleBee func */}
-          <div>
-            {bumbleBee.map((el) => (
-              <div
-                key={el.id}
-                style={el.marqueeStyle}
-                className="beeFlying"
-              ></div>
-            ))}
-          </div>
-          <marquee>
-            <img src={beeimg} />
-          </marquee>
+
+          {bumbleBee.map((el) => (
+            <div
+              key={el.id}
+              style={el.BumblebeeStyle}
+              className="beeFlying"
+            ></div>
+          ))}
         </section>
 
         {/* footer */}
