@@ -22,6 +22,9 @@ export default function HomePage() {
         <li>
           <a href="/cookieclicker">cookieclicker</a>
         </li>
+        <li>
+          <a href="/translations">translations</a>
+        </li>
       </ul>
     </>
   );
