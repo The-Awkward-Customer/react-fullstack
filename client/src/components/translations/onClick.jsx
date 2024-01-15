@@ -1,8 +1,9 @@
 // READ ME
 // This page outlines how click functions work in both vanilla and react JS
 
-const button = document.getElementById("button");
-console.log(button); // returns out button as an object
+// this example will not work when mixed with JSX because the DOM has not yet loaded the button with
+// const button = document.getElementById("button");
+// console.log(button); // returns out button as an object
 
 // // using the button variable we add an event listener to the button object
 // button.addEventListener("click", () => {

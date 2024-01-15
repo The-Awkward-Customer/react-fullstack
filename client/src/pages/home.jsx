@@ -12,6 +12,7 @@ export default function HomePage() {
         <Link to={"/useeffect"}>useEffect</Link>
         <Link to={"/cookieclicker"}>Bumble Boogaloo</Link>
         <Link to={"/translations"}>Translations</Link>
+        <Link to={"/validation"}>validation</Link>
       </nav>
     </>
   );
