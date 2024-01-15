@@ -9,6 +9,7 @@ import MapPage from "./pages/maps";
 import UseEffectPage from "./pages/useeffect";
 import EventsPage from "./pages/events";
 import CookieClicker from "./pages/cookieclicker";
+import Translations from "./pages/reacttranslations";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/maps" element={<MapPage />} />
         <Route path="/useeffect" element={<UseEffectPage />} />
         <Route path="/cookieclicker" element={<CookieClicker />} />
+        <Route path="/translations" element={<Translations />} />
       </Routes>
     </Router>
   </React.StrictMode>
