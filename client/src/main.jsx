@@ -10,6 +10,7 @@ import UseEffectPage from "./pages/useeffect";
 import EventsPage from "./pages/events";
 import CookieClicker from "./pages/cookieclicker";
 import Translations from "./pages/reacttranslations";
+import FormValidation from "./pages/formvalidation";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -23,6 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/useeffect" element={<UseEffectPage />} />
         <Route path="/cookieclicker" element={<CookieClicker />} />
         <Route path="/translations" element={<Translations />} />
+        <Route path="/validation" element={<FormValidation />} />
       </Routes>
     </Router>
   </React.StrictMode>
