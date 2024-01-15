@@ -115,29 +115,6 @@ export default function CookieClicker() {
     setbees(honey - upgradeOne);
   }
 
-  // const AddBumbleBee = () => {
-  //   // useState requires an array as an arrary of elements will be created
-
-  //   setBeesAdded(beesAdded + 1);
-  //   console.log("beeAdded!");
-
-  //   // for i beesAdded
-  //   // increment through beesAdded
-  //   // append setBumbleBee Array with a new element
-  //   const newBees = {
-  //     id: Math.random(),
-  //     BumblebeeStyle: {
-  //       top: `${Math.random() * 100}%`,
-  //       right: `0%`,
-  //       bottom: `${Math.random() * 100}%`,
-  //       animationDuration: `${Math.random() * 8 + 5}s`,
-  //     },
-  //   };
-
-  //   //  update the setBumbleBee([]) array to include newBumbleBee
-  //   setBumbleBee([...bumbleBee, ...newBees]);
-  // };
-
   const AddBumbleBee = () => {
     setBeesAdded(beesAdded + 1);
 
